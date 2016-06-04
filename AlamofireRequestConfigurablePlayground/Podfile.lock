@@ -1,0 +1,23 @@
+PODS:
+  - Alamofire (3.4.0)
+  - AlamofireLogger (0.1.1):
+    - Alamofire (~> 3.1)
+  - AlamofireRequestConfigurable (1.0.0):
+    - Alamofire (~> 3.0)
+
+DEPENDENCIES:
+  - AlamofireLogger
+  - AlamofireRequestConfigurable (from `../`)
+
+EXTERNAL SOURCES:
+  AlamofireRequestConfigurable:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  AlamofireLogger: a405c404d8ca20b4b377a9ab2a8ee8b84bdfe51f
+  AlamofireRequestConfigurable: 41d6559b1ae5f4c12dd1fe0cd67a238a3f8a8f6b
+
+PODFILE CHECKSUM: 7c8965d2b4e10413ea9d608317972de000832783
+
+COCOAPODS: 1.0.0

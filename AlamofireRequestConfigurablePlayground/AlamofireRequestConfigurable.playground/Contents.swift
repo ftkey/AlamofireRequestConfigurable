@@ -1,9 +1,7 @@
-# AlamofireRequestConfigurable
-
-
-```
+//: Please build the scheme 'AlamofireRequestConfigurablePlayground' first
 import XCPlayground
 XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+
 
 
 import Alamofire
@@ -50,21 +48,3 @@ Alamofire.request(IPRouter.Current()).responseString { (response:Response) in
     debugPrint(response.result)
     
 }
-
-```
-
-```
-SUCCESS: {
-    city = "\U65e0\U9521";
-    country = "\U4e2d\U56fd";
-    desc = "";
-    district = "";
-    end = "-1";
-    isp = "";
-    province = "\U6c5f\U82cf";
-    ret = 1;
-    start = "-1";
-    type = "";
-}
-SUCCESS: ({"Ip":"117.85.69.244","Isp":"æ±èçæ é¡å¸ çµä¿¡","Browser":"","OS":"","QueryResult":1})
-```
