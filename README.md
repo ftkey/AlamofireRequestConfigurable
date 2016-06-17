@@ -1,5 +1,8 @@
 # AlamofireRequestConfigurable
 
+[![Version](https://img.shields.io/cocoapods/v/AlamofireRequestConfigurable.svg?style=flat)](http://cocoapods.org/pods/AlamofireRequestConfigurable)
+[![License](https://img.shields.io/cocoapods/l/AlamofireRequestConfigurable.svg?style=flat)](http://cocoapods.org/pods/AlamofireRequestConfigurable)
+[![Platform](https://img.shields.io/cocoapods/p/AlamofireRequestConfigurable.svg?style=flat)](http://cocoapods.org/pods/AlamofireRequestConfigurable)
 
 ```
 import XCPlayground

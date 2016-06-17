@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 public typealias AlamofireRequestConfiguration = (
-    method: Alamofire.Method,
+    method: Alamofire.Method ,
     URLString: Alamofire.URLStringConvertible,
     parameters: [String: AnyObject]?,
     encoding: Alamofire.ParameterEncoding,

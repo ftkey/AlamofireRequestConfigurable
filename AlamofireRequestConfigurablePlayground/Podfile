@@ -1,7 +1,15 @@
 use_frameworks!
 
 target 'AlamofireRequestConfigurablePlayground' do
-pod 'AlamofireRequestConfigurable', :path => '../'
+    pod 'AlamofireRequestConfigurable', :path => '../'
+    pod 'ObjectMapperTransforms'
+    
+    
+    #test
+    pod 'AlamofireObjectMapper'
+    pod 'AlamofireActivityLogger'
+
+
 end
 
 post_install do |installer|
