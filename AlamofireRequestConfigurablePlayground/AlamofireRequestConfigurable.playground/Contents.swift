@@ -11,7 +11,7 @@ import ObjectMapper
 import ObjectMapperTransforms
 
 import AlamofireObjectMapper
-
+import AlamofireActivityLogger
 
 struct  IPObject :Mappable {
     var city:String?
@@ -45,55 +45,98 @@ struct  IPObject :Mappable {
     
 }
 
-
-enum IPRouter: AlamofireRequestConfigurable {
+// 模块化请求网络
+struct IPRouter  {
     
-    case show(ip: String?)
-    case current
-    
-    var configuration: AlamofireRequestConfiguration {
-        switch self {
-            
-        case .show(_) :
-            return (
-                method: .GET,
-                URLString: "http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json",
-                parameters: [:],
-                encoding: .URL,
-                headers: nil
-            )
-            
-        case .current :
-            return (
-                method: .GET,
-                URLString: "http://chaxun.1616.net/s.php?type=ip&output=json",
-                parameters: [:],
-                encoding: .URL,
-                headers: nil
-            )
-            
+    struct Current : AlamofireRequestConfigurable {
+        ////////////////////////////////////////
+        var baseURL: NSURL {
+            return NSURL(string: "http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json")!
         }
+        
+        ////////////////////////////////////////
+
+    }
+    
+    struct Show : AlamofireRequestConfigurable {
+        
+    
+        var _parameters: [String : AnyObject]?
+        
+
+        init(parameters para:[String : AnyObject]?) {
+            _parameters = para
+        }
+        
+        
+        
+        ////////////////////////////////////////
+        var baseURL: NSURL {
+            return NSURL(string: "http://int.dpool.sina.com.cn/")!
+        }
+        
+        var path: String  {
+            return "iplookup/iplookup.php"
+        }
+        var method: Alamofire.Method  {
+            return .GET
+        }
+        var parameters: [String : AnyObject]? {
+            
+//            return ["format":"json","ip":_ip]
+//            return _parameters
+            return ["format":"json","ip":"117.85.65.91"]
+        }
+        
+        var headers: [String : String]?  {
+            return ["XXX":"XXX"]
+        }
+        
+        var encoding: Alamofire.ParameterEncoding {
+            return .URL
+        }
+        ////////////////////////////////////////
+  
     }
 }
+// 简易请求
+
+class TestRequest : HTTPRequest {
+    
+    
+}
+
+
 var request:Alamofire.Request
 
-request = Alamofire.request(IPRouter.show(ip: "117.85.69.244"))
+//TEST1
+request = Alamofire.request(IPRouter.Current()).log()
 request.responseJSON { (response:Response) in
-    debugPrint(request)
-    debugPrint(response.result.value)
 }
 
-request = Alamofire.request(IPRouter.current)
+//TEST2
+request = Alamofire.request(IPRouter.Show(parameters: nil)).log()
 request.responseString { (response:Response) in
-    debugPrint(request)
-    debugPrint(response.result.value)
 }
 
-
-
-Alamofire.request(IPRouter.show(ip: nil)).responseObject { (response: Response<IPObject, NSError>) in
+//TEST3
+Alamofire.request(IPRouter.Current()).log().responseObject { (response: Response<IPObject, NSError>) in
     print("IPObject : \(response.result.value?.toJSONString())" )
 }
+
+//TEST4
+Alamofire.request(HTTPRequest()).log().responseString { (response:Response) in
+
+}
+//TEST6
+Alamofire.request(TestRequest()).log().responseString { (response:Response) in
+}
+//TEST5
+Alamofire.request(HTTPRequest(baseURL: "http://r.qzone.qq.com/cgi-bin/", path: "user/cgi_personal_card", method: .GET, encoding: .URL, parameters: ["qq":"11386846"], headers: [:])).log().responseString { (response:Response) in
+}
+
+
+
 
 
 

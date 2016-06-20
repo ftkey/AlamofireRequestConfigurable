@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "AlamofireRequestConfigurable"
-  s.version      = "1.0.1"
+  s.version      = "1.1.0"
   s.summary      = "Alamofire Request Configurable"
   s.homepage     = "https://futao.me/"
   s.license      = "MIT"
